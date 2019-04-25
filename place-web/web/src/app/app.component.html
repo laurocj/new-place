@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="snav.toggle()"><fa-icon [icon]="faBars" size='lg'></fa-icon></button>
+    <h1>New place</h1>
+</mat-toolbar>
+
+<mat-drawer-container [hasBackdrop]="false">
+    <mat-drawer #snav [mode]="mobileQuery.matches ? 'over' : 'side'" 
+        [opened]="!mobileQuery.matches">
+        <mat-toolbar>
+            <mat-toolbar-row>
+                <a routerLink="/curso">Curso</a>
+            </mat-toolbar-row>
+            <mat-toolbar-row>
+                <a routerLink="/chat">Chat</a>
+            </mat-toolbar-row>
+        </mat-toolbar>
+    </mat-drawer>
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>
