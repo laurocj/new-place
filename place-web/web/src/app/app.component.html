@@ -1,21 +1,31 @@
-<mat-toolbar color="primary">
-    <button mat-icon-button (click)="snav.toggle()"><fa-icon [icon]="faBars" size='lg'></fa-icon></button>
-    <h1>New place</h1>
-</mat-toolbar>
+<div layout="fill" class="mat-app-background" [class.dark-theme]="isDarkThemeActive">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <button mat-icon-button (click)="snav.toggle()">
+                <fa-icon [icon]="faBars" size='lg'></fa-icon>
+            </button>
+            <h1>New place</h1>
 
-<mat-drawer-container [hasBackdrop]="false">
-    <mat-drawer #snav [mode]="mobileQuery.matches ? 'over' : 'side'" 
-        [opened]="!mobileQuery.matches">
-        <mat-toolbar>
-            <mat-toolbar-row>
-                <a routerLink="/curso">Curso</a>
-            </mat-toolbar-row>
-            <mat-toolbar-row>
-                <a routerLink="/chat">Chat</a>
-            </mat-toolbar-row>
-        </mat-toolbar>
-    </mat-drawer>
-    <mat-drawer-content>
-        <router-outlet></router-outlet>
-    </mat-drawer-content>
-</mat-drawer-container>
+            <span class="fill-space"></span>
+            <mat-slide-toggle labelPosition="before" (change)="onThemeChange($event)">
+                Tema escuro
+            </mat-slide-toggle>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-drawer-container [hasBackdrop]="false" class='container'>
+        <mat-drawer #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="!mobileQuery.matches">
+            <mat-toolbar>
+                <mat-toolbar-row>
+                    <a routerLink="/curso">Curso</a>
+                </mat-toolbar-row>
+                <mat-toolbar-row>
+                    <a routerLink="/chat">Chat</a>
+                </mat-toolbar-row>
+            </mat-toolbar>
+        </mat-drawer>
+        <mat-drawer-content>
+            <router-outlet></router-outlet>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>

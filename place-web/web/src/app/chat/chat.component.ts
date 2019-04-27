@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
-import * as $ from 'jquery';
 
 @Component({
   selector: 'app-chat',
@@ -10,9 +9,10 @@ import * as $ from 'jquery';
 })
 export class ChatComponent implements OnInit {
   
-  private serverUrl = 'http://localhost:8888/socket'
-  private title = 'WebSockets chat';
-  private stompClient;
+  private serverUrl : String = 'http://localhost:8888/socket'
+  private stompClient : any;
+
+  public messages : String[]  = []; 
 
   constructor(){
     this.initializeWebSocketConnection();
@@ -22,23 +22,21 @@ export class ChatComponent implements OnInit {
   }
 
 
-  initializeWebSocketConnection(){
+  public initializeWebSocketConnection(){
     let ws = new SockJS(this.serverUrl);
     this.stompClient = Stomp.over(ws);
     let that = this;
     this.stompClient.connect({}, function(frame) {
       that.stompClient.subscribe("/chat", (message) => {
         if(message.body) {
-          $(".chat").append("<div class='message'>"+message.body+"</div>")
-          console.log(message.body);
+          that.messages.push(message.body);
         }
       });
     });
   }
 
-  sendMessage(message){
-    this.stompClient.send("/app/send/message" , {}, message);
-    $('#input').val('');
+  public sendMessage(inputMesage : HTMLInputElement) {
+    this.stompClient.send("/app/send/message" , {}, inputMesage.value);
+    inputMesage.value = '';
   }
-
 }
