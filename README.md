@@ -12,4 +12,10 @@ Rode `ng serve` para ter um servidor de desenvolvimento. No navegador digite `ht
 
 ## Para Back-end
 
-O projeto esta sendo desenvolvido em cima do [Spring Boot](https://spring.io/projects/spring-boot). 
+O projeto esta sendo desenvolvido em cima do [Spring Boot](https://spring.io/projects/spring-boot).
+
+##### Start
+
+Após o clonar o projeto, vá até /new-place/place-web/web/ e rode `npm install`
+
+Ainda em /web rode `ng serve` para ter o projeto web disponível em `http://localhost:4200/`
