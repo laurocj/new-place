@@ -1,0 +1,10 @@
+.project
+.settings
+
+place-server/target
+place-server/.classpath
+place-server/.project
+place-server/.settings
+
+place-web/web/node_modules
+place-web/web/package-lock.json
