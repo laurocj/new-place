@@ -25,6 +25,7 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 library.add(faPaperPlane);
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     FlexLayoutModule,
     MatToolbarModule,
     MatCardModule,

@@ -1,13 +1,18 @@
-<mat-toolbar>
-  <mat-toolbar-row>
-    <a target="_blank" href="https://material.angular.io/">Angular Material</a>
-  </mat-toolbar-row>
-  <mat-toolbar-row>
-    <a target="_blank" href="https://www.npmjs.com/package/@angular/flex-layout">Flex-Layout</a>
-  </mat-toolbar-row>
-  <mat-toolbar-row>
-    <a target="_blank" href="https://www.letsboot.com/">Letsboot.com</a>
-  </mat-toolbar-row>
-</mat-toolbar>
-
-<mat-card>Simple card</mat-card>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <mat-card fxFlex='80' class="mat-elevation-z8">
+      <mat-card-header>
+        <mat-card-title>Curso</mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+    <mat-form-field >
+      <input matInput [value]="titulo" (input)="titulo = $event.target.value" placeholder="Título">
+    </mat-form-field>
+    <mat-form-field >
+      <textarea matInput [value]="conteudo" (input)="conteudo = $event.target.value" placeholder="Conteúdo"></textarea>
+    </mat-form-field>
+    <mat-card-actions align="end">
+      <button mat-button (click)='save()'>Salvar</button>
+    </mat-card-actions>
+  </mat-card>
+  
+</div>
