@@ -26,12 +26,14 @@ library.add(faPaperPlane);
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
+import { CursosComponent } from './cursos/cursos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChatComponent,
-    CursoComponent
+    CursoComponent,
+    CursosComponent
   ],
   imports: [
     BrowserModule,

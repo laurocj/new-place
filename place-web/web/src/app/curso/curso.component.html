@@ -1,18 +1,21 @@
 <div fxLayout="row" fxLayoutAlign="center center">
   <mat-card fxFlex='80' class="mat-elevation-z8">
-      <mat-card-header>
-        <mat-card-title>Curso</mat-card-title>
-      </mat-card-header>
-      <mat-divider></mat-divider>
-    <mat-form-field >
-      <input matInput [value]="titulo" (input)="titulo = $event.target.value" placeholder="Título">
-    </mat-form-field>
-    <mat-form-field >
-      <textarea matInput [value]="conteudo" (input)="conteudo = $event.target.value" placeholder="Conteúdo"></textarea>
-    </mat-form-field>
+    <mat-card-header>
+      <mat-card-title>Curso</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <mat-form-field>
+        <input matInput [value]="titulo" (input)="titulo = $event.target.value" placeholder="Título">
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput [value]="conteudo" (input)="conteudo = $event.target.value"
+          placeholder="Conteúdo"></textarea>
+      </mat-form-field>
+    </mat-card-content>
     <mat-card-actions align="end">
       <button mat-button (click)='save()'>Salvar</button>
     </mat-card-actions>
   </mat-card>
-  
+
 </div>

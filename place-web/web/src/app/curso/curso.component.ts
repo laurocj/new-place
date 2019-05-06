@@ -14,14 +14,10 @@ export class CursoComponent implements OnInit {
   constructor(private cursoService : CursoService) { }
 
   ngOnInit() {
-    this.cursoService.getAll()
-    .subscribe(
-      cursos => console.log(cursos),
-      error => console.log(error));
   }
 
   public save(){
-    this.cursoService.save({titulo:this.titulo,conteuto: this.conteudo})
+    this.cursoService.save({titulo:this.titulo,conteudo: this.conteudo})
     .subscribe(
       res => console.log(res),
       error => console.log(error));

@@ -16,10 +16,10 @@
     <mat-drawer-container [hasBackdrop]="false" class='container'>
         <mat-drawer #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="!mobileQuery.matches">
             <mat-toolbar>
-                <mat-toolbar-row>
-                    <a routerLink="/curso">Curso</a>
+                <mat-toolbar-row routerLinkActive="active">
+                    <a routerLink="/cursos">Curso</a>
                 </mat-toolbar-row>
-                <mat-toolbar-row>
+                <mat-toolbar-row routerLinkActive="active">
                     <a routerLink="/chat">Chat</a>
                 </mat-toolbar-row>
             </mat-toolbar>

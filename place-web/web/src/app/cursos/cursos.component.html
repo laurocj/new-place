@@ -1,0 +1,9 @@
+<div *ngFor='let curso of cursos' fxLayout="row" fxLayoutAlign="center center">
+  <mat-card  fxFlex='80' class="mat-elevation-z8">
+    <mat-card-content>
+      <mat-card-title>{{curso.titulo}}</mat-card-title>
+      <a routerLink='/cursos/gerenciar' mat-button >Gerenciar</a>
+    </mat-card-content>
+  </mat-card>
+
+</div>
