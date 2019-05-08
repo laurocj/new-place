@@ -8,7 +8,8 @@ const routes: Routes = [
   { path: '', component: CursosComponent },
   { path: 'chat', component: ChatComponent },
   { path: 'cursos', component: CursosComponent },
-  { path: 'cursos/gerenciar', component: CursoComponent }
+  { path: 'cursos/gerenciar', component: CursoComponent },
+  { path: 'cursos/gerenciar/{id}', component: CursoComponent }
 ];
 
 
