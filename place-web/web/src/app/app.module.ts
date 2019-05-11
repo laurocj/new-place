@@ -28,13 +28,17 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { CursosComponent } from './cursos/cursos.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AtividadeComponent } from './atividade/atividade.component';
+import { AtividadesComponent } from './atividades/atividades.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChatComponent,
     CursoComponent,
-    CursosComponent
+    CursosComponent,
+    AtividadeComponent,
+    AtividadesComponent
   ],
   imports: [
     AppRoutingModule,

@@ -1,0 +1,16 @@
+<div fxLayout="row">
+  <mat-card fxFlex='50'>
+    <mat-card-content>
+      <mat-form-field>
+        <input matInput [formControl]="titulo" placeholder="Título">
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput [formControl]="conteudo" placeholder="Conteúdo"></textarea>
+      </mat-form-field>
+    </mat-card-content>
+    
+    <mat-card-actions align="end">
+      <button mat-raised-button (click)='save()'>Salvar</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

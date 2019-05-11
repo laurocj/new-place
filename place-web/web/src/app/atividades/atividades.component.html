@@ -1,0 +1,20 @@
+<div fxLayout="row">
+    <mat-card fxFlex='100'>
+      <mat-card-header>
+        <mat-card-title>Atividadades</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <app-atividade 
+          *ngFor='let atividade of atividades'
+          (atividade)='saveAtividade($event)'
+          ></app-atividade>
+  
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-raised-button (click)='novaAtividade()'>Novo</button>
+      </mat-card-actions>
+    </mat-card>
+  
+  </div>

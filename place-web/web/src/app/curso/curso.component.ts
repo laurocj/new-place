@@ -8,6 +8,7 @@ import { CursoService } from '../_service/curso.service';
 })
 export class CursoComponent implements OnInit {
 
+  public id : number
   public titulo : string = '';
   public conteudo : string = '';
 
@@ -19,9 +20,9 @@ export class CursoComponent implements OnInit {
   public save(){
     this.cursoService.save({titulo:this.titulo,conteudo: this.conteudo})
     .subscribe(
-      res => console.log(res),
-      error => console.log(error));
-    console.log(this.titulo,this.conteudo);
+      res => this.id = res.id,
+      error => console.log(error)
+    );
   }
 
 }
