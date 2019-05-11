@@ -14,8 +14,9 @@
     </mat-card-content>
     <mat-card-footer>
       <mat-form-field appearance="outline" fxFlex='100'>
-        <input #input type="text" matInput placeholder="Digite aqui..." (keyup.enter)="sendMessage(input)">
-        <button mat-icon-button matSuffix (click)="sendMessage(input)">
+        <input type="text" matInput placeholder="Digite aqui..."
+          (keyup.enter)="sendMessage()" [formControl]='msgInput' >
+        <button mat-icon-button matSuffix (click)="sendMessage()">
           <fa-icon icon="paper-plane"></fa-icon>
         </button>
       </mat-form-field>

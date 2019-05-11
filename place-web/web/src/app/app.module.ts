@@ -27,6 +27,7 @@ library.add(faPaperPlane);
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { CursosComponent } from './cursos/cursos.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,10 +37,12 @@ import { CursosComponent } from './cursos/cursos.component';
     CursosComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule,
     FlexLayoutModule,
+    FontAwesomeModule,
+    HttpClientModule,    
     MatToolbarModule,
     MatCardModule,
     MatSlideToggleModule,
@@ -48,8 +51,7 @@ import { CursosComponent } from './cursos/cursos.component';
     MatButtonModule,
     MatListModule,
     MatInputModule,
-    AppRoutingModule,
-    FontAwesomeModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

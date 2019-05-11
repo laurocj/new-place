@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-chat',
@@ -13,6 +14,8 @@ export class ChatComponent implements OnInit {
   private stompClient : any;
 
   public messages : String[]  = []; 
+
+  public msgInput : FormControl = new FormControl('');
 
   constructor(){
     this.initializeWebSocketConnection();
@@ -35,8 +38,21 @@ export class ChatComponent implements OnInit {
     });
   }
 
-  public sendMessage(inputMesage : HTMLInputElement) {
-    this.stompClient.send("/app/send/message" , {}, inputMesage.value);
-    inputMesage.value = '';
+  public sendMessage() {
+    this.stompClient.send("/app/send/message" , {}, this.msgInputValue);
+    this.clearMsgInput();
   }
+
+  private clearMsgInput() : void{
+    this.msgInputValue = '';
+  }
+
+  set msgInputValue(value : string) {
+    this.msgInput.setValue(value);
+  }
+
+  get msgInputValue() {
+    return this.msgInput.value;
+  }
+
 }
