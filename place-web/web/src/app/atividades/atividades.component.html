@@ -4,16 +4,26 @@
         <mat-card-title>Atividadades</mat-card-title>
       </mat-card-header>
 
-      <mat-card-content>
-        <app-atividade 
+      <mat-card-content
+        fxLayout="row wrap"
+        fxLayout.lt-sm="column"
+        fxLayoutGap="32px">
+        <app-atividade
           *ngFor='let atividade of atividades'
+          fxFlex="0 1 calc(33.3% - 32px)"
+          fxFlex.lt-md="0 1 calc(50% - 32px)"
+          fxFlex.lt-sm="100%"
           (atividade)='saveAtividade($event)'
           ></app-atividade>
   
       </mat-card-content>
 
       <mat-card-actions align="end">
-        <button mat-raised-button (click)='novaAtividade()'>Novo</button>
+        <button 
+          mat-raised-button
+          [disabled]='!editavel'
+          [attr.aria-disabled]="!editavel"
+          (click)='novaAtividade()'>Nova</button>
       </mat-card-actions>
     </mat-card>
   
