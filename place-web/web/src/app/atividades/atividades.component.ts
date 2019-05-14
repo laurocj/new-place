@@ -46,14 +46,17 @@ export class AtividadesComponent implements OnInit ,OnChanges{
     this.atividades.push(new Object);
   }
 
-  public saveAtividade(atividade : Object) : void {
-    console.log(atividade);
-    atividade['curso'] = {id : this.cursoId};
-    this.atividadeService.save(atividade)
-    .subscribe(
-      res => console.log(res),
-      error => console.log(error)
-    );;
+  public removeAtividade(index : number) : void{
+    this.atividades.splice(index,1);
+  }
+
+  public salvarAtividade(atividade : Object) : void {
+      atividade['curso'] = {id : this.cursoId};
+      this.atividadeService.save(atividade)
+      .subscribe(
+        res => console.log(res),
+        error => console.log(error)
+      );
   }
 
 }

@@ -1,5 +1,5 @@
-<div fxLayout="row">
-  <mat-card fxFlex='50'>
+<div>
+  <mat-card>
     <mat-card-content>
       <mat-form-field>
         <input matInput [formControl]="titulo" placeholder="Título">
@@ -10,6 +10,7 @@
     </mat-card-content>
     
     <mat-card-actions align="end">
+      <button mat-raised-button (click)='remove()'>Remover</button>
       <button mat-raised-button (click)='save()'>Salvar</button>
     </mat-card-actions>
   </mat-card>

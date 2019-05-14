@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -9,12 +9,19 @@ import { FormControl } from '@angular/forms';
 export class AtividadeComponent implements OnInit {
 
   @Output() atividade = new EventEmitter();
+
+  @Output() deletar = new EventEmitter();
+
   public titulo : FormControl = new FormControl('');
   public conteudo : FormControl = new FormControl('');
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public remove() : any {
+    this.deletar.emit();
   }
 
   public save() : any {

@@ -1,30 +1,24 @@
-<div fxLayout="row">
-    <mat-card fxFlex='100'>
-      <mat-card-header>
-        <mat-card-title>Atividadades</mat-card-title>
-      </mat-card-header>
+<div>
+  <h4>Atividadades</h4>
 
-      <mat-card-content
-        fxLayout="row wrap"
-        fxLayout.lt-sm="column"
-        fxLayoutGap="32px">
-        <app-atividade
-          *ngFor='let atividade of atividades'
-          fxFlex="0 1 calc(33.3% - 32px)"
-          fxFlex.lt-md="0 1 calc(50% - 32px)"
-          fxFlex.lt-sm="100%"
-          (atividade)='saveAtividade($event)'
-          ></app-atividade>
-  
-      </mat-card-content>
-
-      <mat-card-actions align="end">
-        <button 
+    <button 
           mat-raised-button
           [disabled]='!editavel'
           [attr.aria-disabled]="!editavel"
           (click)='novaAtividade()'>Nova</button>
-      </mat-card-actions>
-    </mat-card>
+
+      <div
+        fxLayout="row wrap"
+        fxLayout.lt-sm="column"
+        fxLayoutGap="32px">
+        <app-atividade
+          *ngFor='let atividade of atividades;let i = index'
+          fxFlex="0 1 calc(33.3% - 32px)"
+          fxFlex.lt-md="0 1 calc(50% - 32px)"
+          fxFlex.lt-sm="100%"
+          (deletar)='removeAtividade(i)'
+          (atividade)='salvarAtividade($event,i)'
+          ></app-atividade>  
+      </div>
   
   </div>
