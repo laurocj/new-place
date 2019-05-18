@@ -11,14 +11,9 @@ import {
   MatButtonModule,
   MatListModule,
   MatInputModule,
-  MatSlideToggle,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatFormFieldModule
 } from '@angular/material'
-
-import { AppComponent } from './app.component';
-import { ChatComponent } from './chat/chat.component';
-import { AppRoutingModule } from './app-routing.module';
-import { CursoComponent } from './curso/curso.component';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
@@ -26,21 +21,19 @@ library.add(faPaperPlane);
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
-import { CursosComponent } from './cursos/cursos.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AtividadeComponent } from './atividade/atividade.component';
-import { AtividadesComponent } from './atividades/atividades.component';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChatComponent,
-    CursoComponent,
-    CursosComponent,
-    AtividadeComponent,
-    AtividadesComponent
+    ChatComponent
   ],
   imports: [
+    BrowserModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -49,6 +42,7 @@ import { AtividadesComponent } from './atividades/atividades.component';
     HttpClientModule,    
     MatToolbarModule,
     MatCardModule,
+    MatFormFieldModule,
     MatSlideToggleModule,
     MatSidenavModule,
     MatIconModule,

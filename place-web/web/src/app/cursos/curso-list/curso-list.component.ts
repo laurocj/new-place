@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CursoService } from '../_service/curso.service';
+import { CursoService } from '../../_service/curso.service';
 
 @Component({
-  selector: 'app-cursos',
-  templateUrl: './cursos.component.html',
-  styleUrls: ['./cursos.component.scss']
+  selector: 'app-curso-list',
+  templateUrl: './curso-list.component.html',
+  styleUrls: ['./curso-list.component.scss']
 })
-export class CursosComponent implements OnInit {
+export class CursoListComponent implements OnInit {
 
   public cursos : any[];
 

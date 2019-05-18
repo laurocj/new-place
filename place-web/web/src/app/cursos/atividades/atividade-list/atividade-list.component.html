@@ -1,0 +1,33 @@
+<div>
+    <div fxLayout="row" fxLayoutAlign='space-between'>
+      <div fxFlexAlign='center'>
+        <h2>Atividadades</h2>
+      </div>
+      <div fxFlexAlign='center'>
+          <button mat-raised-button (click)="openDialog()">Pick one</button>
+        <button 
+            mat-raised-button
+            [disabled]='!editavel'
+            [attr.aria-disabled]="!editavel"
+            title='Nova'
+            (click)='novaAtividade()'><fa-icon icon='plus'></fa-icon>
+        </button>
+      </div>
+    </div>
+  
+      <div
+        fxLayout="row wrap"
+        fxLayout.lt-sm="column"
+        fxLayoutGap="32px">
+        <app-atividade
+          *ngFor='let atividade of atividades;let i = index'
+          fxFlex="0 1 calc(33.3% - 32px)"
+          fxFlex.lt-md="0 1 calc(50% - 32px)"
+          fxFlex.lt-sm="100%"
+          (deletar)='removeAtividade(i)'
+          (atividade)='salvarAtividade($event,i)'
+          ></app-atividade>  
+      </div>
+    
+    </div>
+  

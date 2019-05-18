@@ -1,20 +1,43 @@
-import { Component, OnInit, Input ,OnChanges, SimpleChanges} from '@angular/core';
-import { AtividadeService } from '../_service/atividade.service';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { AtividadeService } from 'src/app/_service/atividade.service';
+import { MatDialog } from '@angular/material';
+import { AtividadeModalComponent } from '../atividade-modal/atividade-modal.component';
+
+
+export interface DialogData {
+  titulo: string;
+  conteudo: string;
+}
 
 @Component({
-  selector: 'app-atividades',
-  templateUrl: './atividades.component.html',
-  styleUrls: ['./atividades.component.scss']
+  selector: 'app-atividade-list',
+  templateUrl: './atividade-list.component.html',
+  styleUrls: ['./atividade-list.component.scss']
 })
-export class AtividadesComponent implements OnInit ,OnChanges{
+export class AtividadeListComponent implements OnInit {
 
   @Input() editavel : boolean
   @Input() cursoId : number
 
+  titulo: string;
+  conteudo: string;
+
+
   public atividades : Object[] = []
 
 
-  constructor(private atividadeService : AtividadeService) { }
+  constructor(private atividadeService : AtividadeService,public dialog: MatDialog) {}
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AtividadeModalComponent, {
+      data: {conteudo: this.conteudo, titulo: this.titulo}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
+  }
 
   ngOnInit() {
   }
@@ -58,5 +81,6 @@ export class AtividadesComponent implements OnInit ,OnChanges{
         error => console.log(error)
       );
   }
+
 
 }
