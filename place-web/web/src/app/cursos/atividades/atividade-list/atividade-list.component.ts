@@ -1,8 +1,7 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { AtividadeService } from 'src/app/_service/atividade.service';
 import { MatDialog } from '@angular/material';
 import { AtividadeModalComponent } from '../atividade-modal/atividade-modal.component';
-
 
 export interface DialogData {
   titulo: string;
@@ -16,27 +15,14 @@ export interface DialogData {
 })
 export class AtividadeListComponent implements OnInit {
 
-  @Input() editavel : boolean
-  @Input() cursoId : number
+  @Output() atividadesChange: EventEmitter<any[]> = new EventEmitter();
+  @Input() atividades : any[]
 
-  titulo: string;
-  conteudo: string;
+  private atividade : any
+  private novaAtividade : boolean
 
-
-  public atividades : Object[] = []
-
-
-  constructor(private atividadeService : AtividadeService,public dialog: MatDialog) {}
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(AtividadeModalComponent, {
-      data: {conteudo: this.conteudo, titulo: this.titulo}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
-    });
+  constructor(public dialog: MatDialog) {
+    this.limparAtividade();
   }
 
   ngOnInit() {
@@ -45,42 +31,52 @@ export class AtividadeListComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
     for (let propName in changes) {
       let chng = changes[propName];
-      if(propName == 'cursoId' && chng.currentValue != undefined){
-        this.getAtividades(this.cursoId);
-      }
-      
       let cur  = JSON.stringify(chng.currentValue);
       let prev = JSON.stringify(chng.previousValue);
       console.log(`${propName}: currentValue = ${cur}, previousValue = ${prev}`);
     }
   }
 
-  public getAtividades(cursoId : number) : void {
-    this
-    .atividadeService
-    .getAll(cursoId)
-    .subscribe(
-      atividades => {console.log(atividades); this.atividades = atividades},
-      error => console.log(error)
-    )
+  public openDialog(novaAtividade : boolean): void {
+    this.novaAtividade = novaAtividade;
+    const dialogRef = this.dialog.open(AtividadeModalComponent, {
+      data: this.atividade
+    });
+
+    dialogRef.afterClosed().subscribe(atividade => {
+      this.addAtividade(atividade);      
+    });
   }
 
-  public novaAtividade() : any{
-    this.atividades.push(new Object);
+  public addAtividade(atividade: any){
+    if(atividade != undefined) {
+      if(this.atividades == undefined){
+        this.atividades = [];
+      }
+      if(this.novaAtividade)
+        this.atividades.push(atividade);
+      this.onAtividadeChange();
+    }
+    
+    this.limparAtividade();
+  }
+
+  public onAtividadeChange() : void {   
+    this.atividadesChange.emit(this.atividades);
   }
 
   public removeAtividade(index : number) : void{
     this.atividades.splice(index,1);
+    this.onAtividadeChange();
   }
 
-  public salvarAtividade(atividade : Object) : void {
-      atividade['curso'] = {id : this.cursoId};
-      this.atividadeService.save(atividade)
-      .subscribe(
-        res => console.log(res),
-        error => console.log(error)
-      );
+  public editarAtividade(atividade:any){
+    this.atividade = atividade;
+    this.openDialog(false);
   }
 
+  private limparAtividade() : void {
+    this.atividade = {conteudo: null, titulo: null};
+  }
 
 }

@@ -8,12 +8,10 @@ import { FormControl } from '@angular/forms';
 })
 export class AtividadeComponent implements OnInit {
 
-  @Output() atividade = new EventEmitter();
+  @Output() apagar = new EventEmitter();
 
-  @Output() deletar = new EventEmitter();
-
-  public titulo : FormControl = new FormControl('');
-  public conteudo : FormControl = new FormControl('');
+  @Output() atividadeChange: EventEmitter<any> = new EventEmitter();
+  @Input() atividade : any
 
   constructor() { }
 
@@ -21,16 +19,11 @@ export class AtividadeComponent implements OnInit {
   }
 
   public remove() : any {
-    this.deletar.emit();
+    this.apagar.emit();
   }
 
   public save() : any {
-    this.atividade.emit(
-      {
-        titulo:this.titulo.value,
-        conteudo: this.conteudo.value
-      }
-    );
+    this.atividadeChange.emit(this.atividade);
   }
 
 }

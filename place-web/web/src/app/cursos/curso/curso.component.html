@@ -6,17 +6,16 @@
     <mat-divider></mat-divider>
     <mat-card-content>
       <mat-form-field>
-        <input matInput [value]="titulo" (input)="titulo = $event.target.value" placeholder="Título">
+        <input matInput [(ngModel)]="titulo" placeholder="Título">
       </mat-form-field>
       <mat-form-field>
-        <textarea matInput [value]="conteudo" (input)="conteudo = $event.target.value"
+        <textarea matInput [(ngModel)]="conteudo"
           placeholder="Conteúdo"></textarea>
       </mat-form-field>
       
       <br>
       <app-atividade-list
-        [cursoId]='id'
-        [editavel]='id !== undefined'>
+        [(atividades)]='atividades'>
       </app-atividade-list>
 
     </mat-card-content>
