@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CursoService } from '../../_service/curso.service';
 import { ActivatedRoute } from '@angular/router';
-import { AtividadeService } from 'src/app/_service/atividade.service';
+import { AtividadeService } from '../../_service/atividade.service';
 
 @Component({
   selector: 'app-curso',
   templateUrl: './curso.component.html',
   styleUrls: ['./curso.component.css']
 })
+
 export class CursoComponent implements OnInit {
 
   public id : number
@@ -17,8 +18,7 @@ export class CursoComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private cursoService : CursoService,
-    private atividadeService : AtividadeService) { }
+    private cursoService : CursoService) { }
 
   ngOnInit() {
 
@@ -34,25 +34,22 @@ export class CursoComponent implements OnInit {
     this.id = curso['id'];
     this.titulo = curso['titulo'];
     this.conteudo = curso['conteudo'];
+    this.atividades = curso['atividades'];
   }
 
-  public getAtividades(cursoId : number) : void {
-    this
-    .atividadeService
-    .getAll(cursoId)
-    .subscribe(
-      atividades => {console.log(atividades); this.atividades = atividades},
-      error => console.log(error)
-    )
+  public save() {
+    if(isNaN(this.id)) {
+      this.cursoService.save({titulo:this.titulo,conteudo: this.conteudo , atividades:this.atividades})
+      .subscribe(
+        res => this.id = res.id,
+        error => console.log(error)
+      );
+    } else {
+      this.cursoService.update(this.id,{titulo:this.titulo,conteudo: this.conteudo , atividades:this.atividades})
+      .subscribe(
+        res => this.id = res.id,
+        error => console.log(error)
+      );
+    }
   }
-
-  public save(){
-    console.log(this.atividades);
-    // this.cursoService.save({titulo:this.titulo,conteudo: this.conteudo})
-    // .subscribe(
-    //   res => this.id = res.id,
-    //   error => console.log(error)
-    // );
-  }
-
 }

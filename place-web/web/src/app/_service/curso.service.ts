@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json',
+    'Content-Type': 'application/json',
   })
 };
 
@@ -16,29 +16,29 @@ export class CursoService {
 
   constructor(private http: HttpClient) { }
 
-  public getAll():Observable<any>{    
+  public getAll(): Observable<any> {
     return this.http.get(`${environment.apiUrl}/api/cursos/`);
   }
 
-  public getById(id : String):Observable<any>{    
+  public getById(id: String): Observable<any> {
     return this.http.get(`${environment.apiUrl}/api/cursos/${id}`);
   }
 
-  public save(CursoJson : Object):Observable<any>{    
+  public save(cursoJson: Object): Observable<any> {
     return this.http.post(`${environment.apiUrl}/api/cursos`,
-    JSON.stringify(CursoJson),
-    httpOptions
+      JSON.stringify(cursoJson),
+      httpOptions
     );
   }
 
-  public update(id:String,CursoJson : String):Observable<any>{    
+  public update(id: number, cursoJson: Object): Observable<any> {
     return this.http.put(`${environment.apiUrl}/api/cursos/${id}`,
-    JSON.stringify(CursoJson),
-    httpOptions
+      JSON.stringify(cursoJson),
+      httpOptions
     );
   }
 
-  public delete(id:String):Observable<any>{    
+  public delete(id: String): Observable<any> {
     return this.http.delete(`${environment.apiUrl}/api/cursos/${id}`);
   }
 }

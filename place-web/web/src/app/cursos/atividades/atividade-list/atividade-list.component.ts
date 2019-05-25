@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, SimpleChanges, Output, EventEmitter } from '@angular/core';
-import { AtividadeService } from 'src/app/_service/atividade.service';
+import { AtividadeService } from '../../../_service/atividade.service';
 import { MatDialog } from '@angular/material';
 import { AtividadeModalComponent } from '../atividade-modal/atividade-modal.component';
 

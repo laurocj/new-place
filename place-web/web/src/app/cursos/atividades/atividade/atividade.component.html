@@ -1,12 +1,8 @@
 <div>
   <mat-card>
     <mat-card-content>
-      <mat-form-field>
-        <input matInput [(ngModel)]="atividade.titulo" placeholder="Título">
-      </mat-form-field>
-      <mat-form-field>
-        <textarea matInput [(ngModel)]="atividade.conteudo" placeholder="Conteúdo"></textarea>
-      </mat-form-field>
+      <h4>{{ atividade.titulo}} </h4>
+      <p>{{ atividade.conteudo }}</p>
     </mat-card-content>
     
     <mat-card-actions align="end">
