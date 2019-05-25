@@ -1,8 +1,12 @@
 package place.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Curso {
@@ -14,6 +18,9 @@ public class Curso {
 	private String titulo;
 	
 	private String conteudo;
+	
+	@OneToMany(mappedBy = "curso", targetEntity = Atividade.class, cascade = CascadeType.ALL,orphanRemoval=true)
+	private Set<Atividade> atividades;
 
 	public Long getId() {
 		return id;
@@ -37,6 +44,14 @@ public class Curso {
 
 	public void setConteudo(String conteudo) {
 		this.conteudo = conteudo;
+	}
+
+	public Set<Atividade> getAtividades() {
+		return atividades;
+	}
+
+	public void setAtividades(Set<Atividade> atividades) {
+		this.atividades = atividades;
 	}
 
 }

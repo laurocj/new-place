@@ -6,6 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Atividade {
 	
@@ -19,6 +21,7 @@ public class Atividade {
 
 	@ManyToOne
 	@JoinColumn(name = "curso_id")
+	@JsonBackReference
 	private Curso curso;
 
 	public Long getId() {
@@ -52,4 +55,5 @@ public class Atividade {
 	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
+	
 }

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import place.factory.CursoFactory;
 import place.model.Curso;
 import place.repository.CursoRepository;
 
@@ -14,6 +15,9 @@ public class CursoService {
 
 	@Autowired
     private CursoRepository cursoRepository;
+	
+	@Autowired
+	private CursoFactory cursoFactory;
 
 	public List<Curso> findAllCursos() {
 		return cursoRepository.findAll();
@@ -21,7 +25,7 @@ public class CursoService {
 
 	public Curso findById(long id) {
 		Optional<Curso> curso = cursoRepository.findById(id);
-		return curso.get();
+		return curso.orElse(null);
 	}
 
 	public boolean isCursoExist(Curso curso) {
@@ -30,13 +34,18 @@ public class CursoService {
 	}
 
 	public boolean saveCurso(Curso curso) {
-		Curso cursoSave = cursoRepository.save(curso);
+		Curso cursoSave = cursoRepository.save(cursoFactory.getInstance(curso));
 		return cursoSave.getId() != null;
 	}
 
-	public void updateCurso(Curso currentCurso) {
-		cursoRepository.save(currentCurso);
+	public Curso updateCurso(Long id,Curso curso) {
+		Curso currentCurso = findById(id);
 		
+		if(currentCurso == null) {
+			return null;
+		}
+				
+		return cursoRepository.save(cursoFactory.getInstance(currentCurso,curso));
 	}
 
 	public void deleteCursoById(long id) {

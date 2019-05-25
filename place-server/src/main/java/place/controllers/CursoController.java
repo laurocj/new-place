@@ -70,15 +70,12 @@ public class CursoController {
 	@PutMapping(value = "/cursos/{id}")
 	public ResponseEntity<?> updateCurso(@PathVariable("id") long id , @RequestBody Curso curso){
 		logger.info("Atualizar o curso {}",id);
-		Curso currentCurso = cursoService.findById(id);
+		Curso currentCurso = cursoService.updateCurso(id,curso);
 		if(currentCurso == null) {
 			logger.error("Curso com id {} não encontrado.", id);
 			return new ResponseEntity<String>("Curso não encontrado",HttpStatus.NOT_FOUND);			
 		}
 		
-		currentCurso.setConteudo(curso.getConteudo());
-		currentCurso.setTitulo(curso.getTitulo());
-		cursoService.updateCurso(currentCurso);
 		return new ResponseEntity<Curso>(currentCurso,HttpStatus.OK);
 	}
 	
