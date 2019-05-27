@@ -44,8 +44,8 @@ public class CursoService {
 		if(currentCurso == null) {
 			return null;
 		}
-				
-		return cursoRepository.save(cursoFactory.getInstance(currentCurso,curso));
+						
+		return cursoRepository.saveAndFlush(cursoFactory.getInstance(currentCurso,curso));
 	}
 
 	public void deleteCursoById(long id) {
