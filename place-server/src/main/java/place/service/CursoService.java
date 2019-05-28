@@ -14,6 +14,9 @@ import place.repository.CursoRepository;
 public class CursoService {
 
 	@Autowired
+	private AtividadeService atividadeService;
+	
+	@Autowired
     private CursoRepository cursoRepository;
 	
 	@Autowired
@@ -34,7 +37,8 @@ public class CursoService {
 	}
 
 	public boolean saveCurso(Curso curso) {
-		Curso cursoSave = cursoRepository.save(cursoFactory.getInstance(curso));
+		Curso cursoSave = cursoRepository.save(curso);
+		atividadeService.saveAtividade(cursoSave.getAtividades(),cursoSave);
 		return cursoSave.getId() != null;
 	}
 
@@ -44,8 +48,10 @@ public class CursoService {
 		if(currentCurso == null) {
 			return null;
 		}
+		
+		atividadeService.saveAtividade(currentCurso.getAtividades(),curso.getAtividades(), currentCurso);
 						
-		return cursoRepository.saveAndFlush(cursoFactory.getInstance(currentCurso,curso));
+		return cursoRepository.save(cursoFactory.getInstance(currentCurso,curso));
 	}
 
 	public void deleteCursoById(long id) {

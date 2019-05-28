@@ -2,10 +2,12 @@ package place.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import place.factory.AtividadeFactory;
 import place.model.Atividade;
 import place.model.Curso;
 import place.repository.AtividadeRepository;
@@ -16,6 +18,10 @@ public class AtividadeService {
 	@Autowired
     private AtividadeRepository atividadeRepository;
 
+	@Autowired
+    private AtividadeFactory atividadeFactory;
+	
+	
 	public List<Atividade> findAllAtividades() {
 		return atividadeRepository.findAll();
 	}
@@ -38,6 +44,19 @@ public class AtividadeService {
 		Atividade atividadeSave = atividadeRepository.save(atividade);
 		return atividadeSave.getId() != null;
 	}
+	
+	public boolean saveAtividade(Set<Atividade> atividades,Curso curso) {
+		boolean tudoCerto = true;
+		if(curso.getId() == null) {
+			tudoCerto = false;
+		} else {
+			for (Atividade atividade : atividades) {
+				atividade.setCurso(curso);
+				tudoCerto = tudoCerto && saveAtividade(atividade);
+			}
+		} 
+		return tudoCerto;
+	}
 
 	public void updateAtividade(Atividade currentAtividade) {
 		atividadeRepository.save(currentAtividade);
@@ -46,6 +65,26 @@ public class AtividadeService {
 
 	public void deleteAtividadeById(long id) {
 		atividadeRepository.deleteById(id);
+	}
+
+	public void saveAtividade(Set<Atividade> currentAtividades, Set<Atividade> atividades, Curso currentCurso) {
+		currentAtividades
+		.forEach(currentAtividade -> {
+			Long id = currentAtividade.getId();
+			
+			Optional<Atividade> atividade = atividades
+				.stream()
+			    .filter(a -> a.getId() == id)
+			    .findFirst();
+			
+			if(atividade.isEmpty()) {
+				deleteAtividadeById(id);
+			} else {
+				currentAtividade = atividadeFactory.getInstance(currentAtividade,atividade.get());
+				currentAtividade.setCurso(currentCurso);
+				saveAtividade(currentAtividade);
+			}
+		});
 	}
 
 }

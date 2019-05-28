@@ -1,8 +1,8 @@
 package place.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,7 +19,7 @@ public class Curso {
 	
 	private String conteudo;
 	
-	@OneToMany(mappedBy = "curso", targetEntity = Atividade.class, cascade = CascadeType.ALL,orphanRemoval=true)
+	@OneToMany(mappedBy = "curso", targetEntity = Atividade.class)
 	private Set<Atividade> atividades;
 
 	public Long getId() {
@@ -47,6 +47,9 @@ public class Curso {
 	}
 
 	public Set<Atividade> getAtividades() {
+		if(this.atividades == null) {
+			this.atividades = new HashSet<Atividade>();
+		}
 		return atividades;
 	}
 
