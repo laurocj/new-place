@@ -1,0 +1,17 @@
+<div
+fxLayout
+fxLayout.xs="column"
+fxLayoutAlign="start"
+fxLayoutGap="10px">
+    <mat-card class="mat-elevation-z1" 
+      fxFlex='25%'
+      fxFlex.xs='99%'
+      *ngFor='let curso of cursos'>
+      <mat-card-content
+        fxLayout="row"
+        fxLayoutAlign="space-between">
+        <mat-card-title>{{curso.titulo}}</mat-card-title>
+        <a [routerLink]="['/portal-aluno/producao',curso.id]"  mat-raised-button >Gerenciar</a>
+      </mat-card-content>
+    </mat-card>
+</div>

@@ -7,6 +7,10 @@ const routes: Routes = [
     path: 'cursos',
     loadChildren: './cursos/cursos.module#CursosModule'
   },
+  {
+    path: 'producao',
+    loadChildren: './portal-aluno/portal-aluno.module#PortalAlunoModule'
+  },
   { path: 'chat', component: ChatComponent },
   {
     path: '',
