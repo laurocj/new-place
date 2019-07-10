@@ -1,0 +1,18 @@
+
+<h1 mat-dialog-title>Atividade</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.titulo" placeholder="Título">
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput [(ngModel)]="data.conteudo" placeholder="Conteúdo"></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Não salvar</button>
+  <button mat-button 
+    [mat-dialog-close]="data"
+    [disabled]='data.titulo == undefined'
+    [attr.aria-disabled]="data.titulo == undefined"
+    >Salvar</button>
+</div>

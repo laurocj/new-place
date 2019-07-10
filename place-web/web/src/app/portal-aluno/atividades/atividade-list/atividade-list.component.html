@@ -1,0 +1,24 @@
+<div>
+    <div fxLayout="row" fxLayoutAlign='space-between'>
+      <div fxFlexAlign='center'>
+        <h2>Atividades</h2>
+      </div>
+    </div>
+  
+    <div
+      fxLayout="row wrap"
+      fxLayout.lt-sm="column"
+      fxLayoutGap="32px">
+      <app-atividade
+        *ngFor='let atividade of atividades;let i = index'
+        fxFlex="0 1 calc(33.3% - 32px)"
+        fxFlex.lt-md="0 1 calc(50% - 32px)"
+        fxFlex.lt-sm="100%"
+        (apagar)='removeAtividade(i)'
+        [atividade]='atividade'
+        (atividadeChange)='editarAtividade($event)'
+        ></app-atividade>  
+    </div>
+    
+    </div>
+  

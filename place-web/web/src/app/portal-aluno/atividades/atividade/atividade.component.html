@@ -1,0 +1,12 @@
+<div>
+  <mat-card>
+    <mat-card-content>
+      <h4>{{ atividade.titulo}} </h4>
+      <p>{{ atividade.conteudo }}</p>
+    </mat-card-content>
+    
+    <mat-card-actions align="end">
+      <a [routerLink]="['/producao/curso/1/atividade',atividade.id]" mat-raised-button >Trabalhar</a>
+    </mat-card-actions>
+  </mat-card>
+</div>

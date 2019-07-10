@@ -77,12 +77,12 @@ public class AtividadeService {
 			    .filter(a -> a.getId() == id)
 			    .findFirst();
 			
-			if(atividade.isEmpty()) {
-				deleteAtividadeById(id);
-			} else {
+			if(atividade.isPresent()) {
 				currentAtividade = atividadeFactory.getInstance(currentAtividade,atividade.get());
 				currentAtividade.setCurso(currentCurso);
 				saveAtividade(currentAtividade);
+			} else {
+				deleteAtividadeById(id);				
 			}
 		});
 	}
