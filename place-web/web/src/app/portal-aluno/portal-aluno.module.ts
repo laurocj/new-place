@@ -12,6 +12,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AtividadeListComponent } from './atividades/atividade-list/atividade-list.component';
 import { AtividadeComponent } from './atividades/atividade/atividade.component';
 import { AtividadeModalComponent } from './atividades/atividade-modal/atividade-modal.component';
+import { AtividadeEditorComponent } from './atividades/atividade-editor/atividade-editor.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { AtividadeModalComponent } from './atividades/atividade-modal/atividade-
     CursoListComponent,
     AtividadeListComponent,
     AtividadeComponent,
-    AtividadeModalComponent
+    AtividadeModalComponent,
+    AtividadeEditorComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +40,8 @@ import { AtividadeModalComponent } from './atividades/atividade-modal/atividade-
     MatButtonModule,
     MatListModule,
     MatInputModule,
-    PortalAlunoRoutingModule
+    PortalAlunoRoutingModule,
+    AngularEditorModule
   ],
   entryComponents:[AtividadeModalComponent]
 })

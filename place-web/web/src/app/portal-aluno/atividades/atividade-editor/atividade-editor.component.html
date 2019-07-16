@@ -1,0 +1,31 @@
+
+  <!-- <div>
+    <mat-form-field>
+      <input matInput [(ngModel)]="atividade.titulo" placeholder="Título">
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput [(ngModel)]="atividade.conteudo" placeholder="Conteúdo"></textarea>
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-button (click)="onNoClick()">Não salvar</button>
+    <button mat-button 
+      
+      >Salvar</button>
+  </div> -->
+
+<div fxLayout="row" fxLayoutAlign="center center">
+  <mat-card fxFlex='80' fxLayout="column" fxLayoutAlign="space-between">
+    <mat-card-header fxFlex='20'>
+        <mat-card-title>{{ atividade.titulo}} </mat-card-title>
+        <mat-card-subtitle>{{ atividade.conteudo }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content fxFlex>
+        <angular-editor fxFlex></angular-editor>
+    </mat-card-content>
+    
+    <mat-card-actions fxFlex='9' align="end">
+      <a mat-raised-button >Salvar</a>
+    </mat-card-actions>
+  </mat-card>
+</div>
