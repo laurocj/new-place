@@ -38,11 +38,11 @@ public class AtividadeController {
 		List<Atividade> atividades = new ArrayList<Atividade>();
 		
 		if(cursoId == null) {
-			atividades = atividadeService.findAllAtividades();
+			atividades = atividadeService.findAll();
 		} else {
 			Curso curso = new Curso();
 			curso.setId(cursoId);
-			atividades = atividadeService.findAtividadesByCurso(curso);
+			atividades = atividadeService.findByCurso(curso);
 		}
 		
 		if(atividades.isEmpty()) {
@@ -67,12 +67,12 @@ public class AtividadeController {
 	@PostMapping(value = "/atividades")
 	public ResponseEntity<?> criaAtividade(@RequestBody Atividade atividade,UriComponentsBuilder ucBuilder){
 		logger.info("Criar atividade : {}",atividade);
-		if(atividadeService.isAtividadeExist(atividade)) {
+		if(atividadeService.isExist(atividade)) {
 			logger.error("Atividade já existe {}",atividade.getTitulo());
 			return new ResponseEntity<String>("Atividades já cadastrado",HttpStatus.CONFLICT);
 		}
 		
-		atividadeService.saveAtividade(atividade);
+		atividadeService.save(atividade);
 //		HttpHeaders headers = new HttpHeaders();
 //		headers.setLocation(ucBuilder.path("/api/atividades/{id}").buildAndExpand(atividade.getId()).toUri());
 		return new ResponseEntity<Atividade>(atividade,HttpStatus.CREATED);
@@ -90,7 +90,7 @@ public class AtividadeController {
 		
 		currentAtividade.setConteudo(atividade.getConteudo());
 		currentAtividade.setTitulo(atividade.getTitulo());
-		atividadeService.updateAtividade(currentAtividade);
+		atividadeService.update(currentAtividade);
 		return new ResponseEntity<Atividade>(currentAtividade,HttpStatus.OK);
 	}
 	
@@ -105,7 +105,7 @@ public class AtividadeController {
 			return new ResponseEntity<String>("Atividade não encontrado",HttpStatus.NOT_FOUND);			
 		}
 		
-		atividadeService.deleteAtividadeById(id);
+		atividadeService.deleteById(id);
 		return new ResponseEntity<Atividade>(HttpStatus.NO_CONTENT);
 	}
 }

@@ -22,11 +22,11 @@ public class AtividadeService {
     private AtividadeFactory atividadeFactory;
 	
 	
-	public List<Atividade> findAllAtividades() {
+	public List<Atividade> findAll() {
 		return atividadeRepository.findAll();
 	}
 	
-	public List<Atividade> findAtividadesByCurso(Curso curso) {
+	public List<Atividade> findByCurso(Curso curso) {
 		return atividadeRepository.findByCurso(curso);
 	}
 
@@ -35,39 +35,39 @@ public class AtividadeService {
 		return atividade.get();
 	}
 
-	public boolean isAtividadeExist(Atividade atividade) {
+	public boolean isExist(Atividade atividade) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public boolean saveAtividade(Atividade atividade) {
+	public boolean save(Atividade atividade) {
 		Atividade atividadeSave = atividadeRepository.save(atividade);
 		return atividadeSave.getId() != null;
 	}
 	
-	public boolean saveAtividade(Set<Atividade> atividades,Curso curso) {
+	public boolean save(Set<Atividade> atividades,Curso curso) {
 		boolean tudoCerto = true;
 		if(curso.getId() == null) {
 			tudoCerto = false;
 		} else {
 			for (Atividade atividade : atividades) {
 				atividade.setCurso(curso);
-				tudoCerto = tudoCerto && saveAtividade(atividade);
+				tudoCerto = tudoCerto && save(atividade);
 			}
 		} 
 		return tudoCerto;
 	}
 
-	public void updateAtividade(Atividade currentAtividade) {
+	public void update(Atividade currentAtividade) {
 		atividadeRepository.save(currentAtividade);
 		
 	}
 
-	public void deleteAtividadeById(long id) {
+	public void deleteById(long id) {
 		atividadeRepository.deleteById(id);
 	}
 
-	public void saveAtividade(Set<Atividade> currentAtividades, Set<Atividade> atividades, Curso currentCurso) {
+	public void save(Set<Atividade> currentAtividades, Set<Atividade> atividades, Curso currentCurso) {
 		currentAtividades
 		.forEach(currentAtividade -> {
 			Long id = currentAtividade.getId();
@@ -80,9 +80,9 @@ public class AtividadeService {
 			if(atividade.isPresent()) {
 				currentAtividade = atividadeFactory.getInstance(currentAtividade,atividade.get());
 				currentAtividade.setCurso(currentCurso);
-				saveAtividade(currentAtividade);
+				save(currentAtividade);
 			} else {
-				deleteAtividadeById(id);				
+				deleteById(id);				
 			}
 		});
 	}
