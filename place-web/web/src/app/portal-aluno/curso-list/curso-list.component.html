@@ -1,17 +1,17 @@
-<div
-fxLayout
-fxLayout.xs="column"
-fxLayoutAlign="start"
-fxLayoutGap="10px">
-    <mat-card class="mat-elevation-z1" 
-      fxFlex='25%'
-      fxFlex.xs='99%'
-      *ngFor='let curso of cursos'>
-      <mat-card-content
-        fxLayout="row"
-        fxLayoutAlign="space-between">
-        <mat-card-title>{{curso.titulo}}</mat-card-title>
-        <a [routerLink]="['/producao/curso',curso.id]"  mat-raised-button >Gerenciar</a>
-      </mat-card-content>
-    </mat-card>
+<div fxLayout
+     fxLayoutAlign="center">
+  <mat-card fxFlex='80%' fxFlex.xs='99%' class="mat-elevation-z8">
+    
+    <div fxLayout='column'
+        fxLayoutGap="10px">
+      <mat-card class="mat-elevation-z1"  *ngFor='let curso of cursos'>
+        <mat-card-content
+          fxLayout="row"
+          fxLayoutAlign="space-between">
+          <mat-card-title>{{curso.titulo}}</mat-card-title>
+          <a [routerLink]="['/producao/curso',curso.id]"  mat-raised-button >Entrar</a>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-card>
 </div>

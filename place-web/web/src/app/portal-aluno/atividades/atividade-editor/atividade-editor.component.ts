@@ -15,6 +15,31 @@ export class AtividadeEditorComponent implements OnInit {
   @Output() atividadeChange: EventEmitter<any> = new EventEmitter();
   @Input() atividade : any
 
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '50vh',
+    placeholder: 'Enter text here...',
+    translate: 'no',
+    sanitize: false,
+    toolbarPosition: 'top',
+    defaultFontName: 'Arial',
+    customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ]
+  };
 
 
   constructor(
