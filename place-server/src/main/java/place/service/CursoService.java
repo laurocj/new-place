@@ -19,7 +19,7 @@ public class CursoService {
 	@Autowired
 	private CursoFactory cursoFactory;
 
-	public List<Curso> findAllCursos() {
+	public List<Curso> findAll() {
 		return cursoRepository.findAll();
 	}
 
@@ -28,17 +28,17 @@ public class CursoService {
 		return curso.orElse(null);
 	}
 
-	public boolean isCursoExist(Curso curso) {
+	public boolean isExist(Curso curso) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public boolean saveCurso(Curso curso) {
+	public boolean save(Curso curso) {
 		Curso cursoSave = cursoRepository.save(cursoFactory.getInstance(curso));
 		return cursoSave.getId() != null;
 	}
 
-	public Curso updateCurso(Long id,Curso curso) {
+	public Curso update(Long id,Curso curso) {
 		Curso currentCurso = findById(id);
 		
 		if(currentCurso == null) {
@@ -48,7 +48,7 @@ public class CursoService {
 		return cursoRepository.saveAndFlush(cursoFactory.getInstance(currentCurso,curso));
 	}
 
-	public void deleteCursoById(long id) {
+	public void deleteById(long id) {
 		cursoRepository.deleteById(id);
 	}
 

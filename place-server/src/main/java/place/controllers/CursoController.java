@@ -32,7 +32,7 @@ public class CursoController {
 	// ------ Recupera todos os cursos --------------
 	@GetMapping(value = "/cursos")
 	public ResponseEntity<List<Curso>> listCursos() {
-		List<Curso> cursos = cursoService.findAllCursos();
+		List<Curso> cursos = cursoService.findAll();
 		if(cursos.isEmpty()) {
 			return new ResponseEntity<List<Curso>>(HttpStatus.NOT_FOUND);
 		}
@@ -55,12 +55,12 @@ public class CursoController {
 	@PostMapping(value = "/cursos")
 	public ResponseEntity<?> criaCurso(@RequestBody Curso curso,UriComponentsBuilder ucBuilder){
 		logger.info("Criar curso : {}",curso);
-		if(cursoService.isCursoExist(curso)) {
+		if(cursoService.isExist(curso)) {
 			logger.error("Curso já existe {}",curso.getTitulo());
 			return new ResponseEntity<String>("Cursos já cadastrado",HttpStatus.CONFLICT);
 		}
 		
-		cursoService.saveCurso(curso);
+		cursoService.save(curso);
 //		HttpHeaders headers = new HttpHeaders();
 //		headers.setLocation(ucBuilder.path("/api/cursos/{id}").buildAndExpand(curso.getId()).toUri());
 		return new ResponseEntity<Curso>(curso,HttpStatus.CREATED);
@@ -70,7 +70,7 @@ public class CursoController {
 	@PutMapping(value = "/cursos/{id}")
 	public ResponseEntity<?> updateCurso(@PathVariable("id") long id , @RequestBody Curso curso){
 		logger.info("Atualizar o curso {}",id);
-		Curso currentCurso = cursoService.updateCurso(id,curso);
+		Curso currentCurso = cursoService.update(id,curso);
 		if(currentCurso == null) {
 			logger.error("Curso com id {} não encontrado.", id);
 			return new ResponseEntity<String>("Curso não encontrado",HttpStatus.NOT_FOUND);			
@@ -90,7 +90,7 @@ public class CursoController {
 			return new ResponseEntity<String>("Curso não encontrado",HttpStatus.NOT_FOUND);			
 		}
 		
-		cursoService.deleteCursoById(id);
+		cursoService.deleteById(id);
 		return new ResponseEntity<Curso>(HttpStatus.NO_CONTENT);
 	}
 }
