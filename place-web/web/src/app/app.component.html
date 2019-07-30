@@ -6,7 +6,8 @@
           </button>
           <h1>New place</h1>
 
-          <span class="fill-space"></span>
+          <!-- <span class="fill-space"></span> -->
+         
           <mat-slide-toggle labelPosition="before" (change)="onThemeChange($event)">
               Tema escuro
           </mat-slide-toggle>
@@ -16,19 +17,22 @@
   <mat-drawer-container [hasBackdrop]="false" class='container'>
       <mat-drawer #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="!mobileQuery.matches">
           <mat-toolbar>
-              <mat-toolbar-row routerLinkActive="active">
-                  <a routerLink="/cursos">Curso</a>
+              <mat-toolbar-row routerLinkActive="active" routerLink="/cursos">
+                  <span>Curso</span>
               </mat-toolbar-row>
-              <mat-toolbar-row routerLinkActive="active">
-                  <a routerLink="/chat">Chat</a>
-              </mat-toolbar-row>
-              <mat-toolbar-row routerLinkActive="active">
-                <a routerLink="/producao">Produção</a>
+              <!-- <mat-toolbar-row routerLinkActive="active" routerLink="/chat">
+                  <span>Chat</span>
+              </mat-toolbar-row> -->
+              <mat-toolbar-row routerLinkActive="active" routerLink="/producao">
+                  <span>Produção</span>
               </mat-toolbar-row>
           </mat-toolbar>
+          <app-chat style="z-index:9999999"></app-chat>
       </mat-drawer>
       <mat-drawer-content>
           <router-outlet></router-outlet>
       </mat-drawer-content>
+      
   </mat-drawer-container>
+  
 </div>

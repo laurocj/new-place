@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="center">
+<!-- <div fxLayout="row" fxLayoutAlign="center">
   <mat-card class="mat-elevation-z8">
     <mat-card-header>
       <mat-card-title>Chat</mat-card-title>
@@ -22,4 +22,29 @@
       </mat-form-field>
     </mat-card-footer>
   </mat-card>
-</div>
+</div> -->
+
+
+<mat-card class="box" cdkDrag>
+  <mat-card-header>
+    <mat-card-title>Chat</mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content [style.overflow]="'auto'" [style.height.vh]="'30'"
+    #scrollMe [scrollTop]="scrollMe.scrollHeight">
+    <mat-list>
+      <mat-list-item *ngFor="let message of messages">
+        <p mat-line>{{message}}</p>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-footer>
+    <mat-form-field appearance="outline" fxFlex='100'>
+      <input type="text" matInput placeholder="Digite aqui..."
+        (keyup.enter)="sendMessage()" [formControl]='msgInput' >
+      <button mat-icon-button matSuffix (click)="sendMessage()">
+        <fa-icon icon="paper-plane"></fa-icon>
+      </button>
+    </mat-form-field>
+  </mat-card-footer>
+</mat-card>

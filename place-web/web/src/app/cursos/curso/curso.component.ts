@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CursoService } from '../../_service/curso.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AtividadeService } from '../../_service/atividade.service';
 
 @Component({
@@ -18,6 +18,7 @@ export class CursoComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private cursoService : CursoService) { }
 
   ngOnInit() {
@@ -41,15 +42,25 @@ export class CursoComponent implements OnInit {
     if(isNaN(this.id)) {
       this.cursoService.save({titulo:this.titulo,conteudo: this.conteudo , atividades:this.atividades})
       .subscribe(
-        res => this.id = res.id,
+        res => {
+          this.id = res.id;
+          this.gotoCursos();
+        },
         error => console.log(error)
       );
     } else {
       this.cursoService.update(this.id,{titulo:this.titulo,conteudo: this.conteudo , atividades:this.atividades})
       .subscribe(
-        res => this.id = res.id,
+        res => {
+          this.id = res.id;
+          this.gotoCursos();
+        },
         error => console.log(error)
       );
     }
+  }
+
+  gotoCursos() {
+    this.router.navigate(['/cursos']);
   }
 }

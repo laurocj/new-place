@@ -43,3 +43,12 @@ html, body {
 .border {
   border: blue solid 1px;
 }
+
+.active{
+  border:#3f51b5 solid 3px;
+  border-radius: 5px;
+}
+
+.dark-theme .active{
+  border: #e91e63 solid 3px;
+}
