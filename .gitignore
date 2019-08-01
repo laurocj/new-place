@@ -8,3 +8,4 @@ place-server/.settings
 
 place-web/web/node_modules
 place-web/web/package-lock.json
+place-web/web/dist

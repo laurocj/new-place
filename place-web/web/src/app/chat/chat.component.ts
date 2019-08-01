@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import { FormControl } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-chat',
@@ -10,7 +11,8 @@ import { FormControl } from '@angular/forms';
 })
 export class ChatComponent implements OnInit {
   
-  private serverUrl : String = 'http://localhost:8888/socket'
+  
+  private serverUrl : String;
   private stompClient : any;
 
   public messages : String[]  = []; 
@@ -18,6 +20,7 @@ export class ChatComponent implements OnInit {
   public msgInput : FormControl = new FormControl('');
 
   constructor(){
+    this.serverUrl = `${environment.apiUrl}/socket`;
     this.initializeWebSocketConnection();
   }
 
