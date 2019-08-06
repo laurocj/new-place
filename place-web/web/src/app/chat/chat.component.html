@@ -31,7 +31,7 @@
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content [style.overflow]="'auto'" [style.height.vh]="'30'"
-    #scrollMe [scrollTop]="scrollMe.scrollHeight">
+    #scrollMe [scrollTop]="scrollMe.scrollHeight > scrollMe.offsetHeight ? scrollMe.scrollHeight : 0">
     <mat-list>
       <mat-list-item *ngFor="let message of messages">
         <p mat-line>{{message}}</p>

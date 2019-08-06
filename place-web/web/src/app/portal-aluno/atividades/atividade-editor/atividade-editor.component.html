@@ -5,11 +5,11 @@
         <mat-card-subtitle>{{ atividade.conteudo }}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-        <angular-editor fxFlex [(ngModel)]="htmlContent" [config]="config"></angular-editor>
+        <angular-editor fxFlex [(ngModel)]="conteudo" [config]="config"></angular-editor>
     </mat-card-content>
     
     <mat-card-actions fxFlex='9' align="end">
-      <a mat-raised-button >Salvar</a>
+      <button mat-raised-button (click)='save()'>Salvar</button>
     </mat-card-actions>
   </mat-card>
 </div>

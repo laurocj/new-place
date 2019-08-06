@@ -1,6 +1,7 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AtividadeService } from 'src/app/_service/atividade.service';
+import { ProducaoService } from 'src/app/_service/producao.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
@@ -10,10 +11,9 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 })
 export class AtividadeEditorComponent implements OnInit {
 
-  @Output() apagar = new EventEmitter();
-
-  @Output() atividadeChange: EventEmitter<any> = new EventEmitter();
-  @Input() atividade : any
+  public atividade : any
+  public conteudo : String
+  public matriculaId : number = 2;
 
   config: AngularEditorConfig = {
     editable: true,
@@ -44,7 +44,8 @@ export class AtividadeEditorComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private atividadeService : AtividadeService
+    private atividadeService : AtividadeService,
+    private producaoService : ProducaoService
   ) { }
 
   ngOnInit() {
@@ -57,12 +58,19 @@ export class AtividadeEditorComponent implements OnInit {
     }
   }
 
-  public remove() : any {
-    this.apagar.emit();
-  }
-
   public save() : any {
-    this.atividadeChange.emit(this.atividade);
+    var producao = { 
+      conteudo : this.conteudo,
+      atividade_id : this.atividade.id,
+      matricula_id : this.matriculaId
+    }
+    this.producaoService.save(producao)
+    .subscribe(
+      res => {
+        console.log(res);
+      },
+      error => console.log(error)
+    );
   }
 
 }
