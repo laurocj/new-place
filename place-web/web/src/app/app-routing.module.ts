@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ChatComponent } from './chat/chat.component';
+import { UsuarioComponent } from './usuarios/usuario/usuario.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,7 @@ const routes: Routes = [
     loadChildren: './portal-aluno/portal-aluno.module#PortalAlunoModule'
   },
   { path: 'chat', component: ChatComponent },
+  { path: 'usuarios', component: UsuarioComponent },
   {
     path: '',
     redirectTo: '',

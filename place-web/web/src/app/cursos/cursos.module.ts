@@ -20,11 +20,13 @@ import {
   MatCardModule,
   MatIconModule,
   MatButtonModule,
+  MatTableModule,
   MatListModule,
   MatInputModule,
   MatSlideToggleModule,
   MatFormFieldModule,
-  MatDialogModule
+  MatDialogModule,
+  MatPaginatorModule
 } from '@angular/material'
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -54,6 +56,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     MatButtonModule,
     MatListModule,
     MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
     ReactiveFormsModule
   ],
   entryComponents:[AtividadeModalComponent]

@@ -22,16 +22,20 @@ library.add(faPaperPlane);
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChatComponent } from './chat/chat.component';
+import { UsuarioComponent } from './usuarios/usuario/usuario.component';
+import { UsuarioListComponent } from './usuarios/usuario-list/usuario-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChatComponent,
+    UsuarioComponent,
+    UsuarioListComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +44,7 @@ import { ChatComponent } from './chat/chat.component';
     BrowserAnimationsModule,
     FlexLayoutModule,
     FontAwesomeModule,
+    FormsModule,
     HttpClientModule,
     DragDropModule,  
     MatToolbarModule,
