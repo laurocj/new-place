@@ -25,7 +25,4 @@ export class CursoListComponent implements OnInit {
       
       error => console.log(error));
   }
-
-  
-
 }

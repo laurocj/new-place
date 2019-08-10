@@ -13,7 +13,9 @@ import {
   MatListModule,
   MatInputModule,
   MatSlideToggleModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatTableModule,
+  MatPaginatorModule
 } from '@angular/material'
 
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -54,7 +56,9 @@ import { UsuarioListComponent } from './usuarios/usuario-list/usuario-list.compo
     MatSidenavModule,
     MatIconModule,
     MatButtonModule,
+    MatTableModule,
     MatListModule,
+    MatPaginatorModule,
     MatInputModule,
     ReactiveFormsModule
   ],
